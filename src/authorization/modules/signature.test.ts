@@ -1,9 +1,9 @@
 import signature from "./signature";
 
-const requestMethod = "POST";
-const baseUrl = "https://api.twitter.com/1.1/statuses/update.json";
-const queryParams = { include_entities: "true" };
-const bodyParams = {
+const method = "POST";
+const baseURL = "https://api.twitter.com/1.1/statuses/update.json";
+const params = { include_entities: "true" };
+const data = {
   status: "Hello Ladies + Gentlemen, a signed OAuth request!",
 };
 const oAuthOptions = {
@@ -18,10 +18,10 @@ const oAuthOptions = {
 it("should return the signature", () => {
   expect(
     signature({
-      requestMethod,
-      baseUrl,
-      queryParams,
-      bodyParams,
+      method,
+      baseURL,
+      params,
+      data,
       oAuthOptions,
     })
   ).toBe("hCtSmYh+iHYCEqBWrE7C7hYmtUk=");

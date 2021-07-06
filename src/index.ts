@@ -12,41 +12,92 @@ function buildBody(
 }
 
 export default function oAuthV1Headers(
-  options: Omit<AuthorizationOptions, "bodyParams">
+  options: Omit<AuthorizationOptions, "data">
 ): {
-  Authorization: string;
+  method: "GET" | "PUT" | "POST" | "DELETE";
+  baseURL: string;
+  params: Record<string, string>;
+  headers: {
+    Authorization: string;
+  };
 };
-export default function oAuthV1Headers(options: AuthorizationOptions): {
-  body: string;
+export default function oAuthV1Headers(
+  options: Omit<AuthorizationOptions, "params">
+): {
+  method: "GET" | "PUT" | "POST" | "DELETE";
+  baseURL: string;
+  data: string;
   headers: {
     Authorization: string;
     "Content-Type": "application/x-www-form-urlencoded";
     "Content-Length": number;
   };
 };
+export default function oAuthV1Headers(
+  options: Omit<AuthorizationOptions, "params" | "data">
+): {
+  method: "GET" | "PUT" | "POST" | "DELETE";
+  baseURL: string;
+  headers: {
+    Authorization: string;
+  };
+};
 export default function oAuthV1Headers(options: AuthorizationOptions):
-  | { Authorization: string }
   | {
-      body: string;
+      method: "GET" | "PUT" | "POST" | "DELETE";
+      baseURL: string;
+      params: Record<string, string>;
+      headers: {
+        Authorization: string;
+      };
+    }
+  | {
+      method: "GET" | "PUT" | "POST" | "DELETE";
+      baseURL: string;
+      data: string;
       headers: {
         Authorization: string;
         "Content-Type": "application/x-www-form-urlencoded";
         "Content-Length": number;
       };
+    }
+  | {
+      method: "GET" | "PUT" | "POST" | "DELETE";
+      baseURL: string;
+      headers: {
+        Authorization: string;
+      };
     } {
-  if (options.bodyParams) {
-    const body = buildBody(options.bodyParams || {});
+  if (options.data) {
+    const data = buildBody(options.data || {});
     return {
-      body,
+      baseURL: options.baseURL,
+      method: options.method,
+      data,
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        "Content-Length": Buffer.byteLength(body),
+        "Content-Length": Buffer.byteLength(data),
+        Authorization: authorization(options),
+      },
+    };
+  }
+
+  if (options.params) {
+    return {
+      baseURL: options.baseURL,
+      method: options.method,
+      params: options.params,
+      headers: {
         Authorization: authorization(options),
       },
     };
   }
 
   return {
-    Authorization: authorization(options),
+    baseURL: options.baseURL,
+    method: options.method,
+    headers: {
+      Authorization: authorization(options),
+    },
   };
 }

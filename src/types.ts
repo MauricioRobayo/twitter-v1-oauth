@@ -17,11 +17,10 @@ export type SignatureOAuthOptions = Pick<
   ExtendedOAuthOptions;
 
 export type RequestOptions = {
-  baseUrl: string;
-  subdomain?: string;
-  requestMethod: "GET" | "POST" | "PUT" | "DELETE";
-  queryParams?: Record<string, string>;
-  bodyParams?: Record<string, string | number | boolean>;
+  baseURL: string;
+  method: "GET" | "POST" | "PUT" | "DELETE";
+  params?: Record<string, string>;
+  data?: Record<string, string | number | boolean>;
 };
 
 export type AuthorizationOptions = RequestOptions & {

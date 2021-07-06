@@ -3,10 +3,10 @@ import { percentEncode } from "../helpers";
 import parameterString from "./parameterString";
 
 export default function signatureBaseString({
-  requestMethod,
-  baseUrl,
-  queryParams,
-  bodyParams,
+  method,
+  baseURL,
+  params,
+  data,
   oAuthOptions,
 }: RequestOptions & {
   oAuthOptions: SignatureOAuthOptions;
@@ -18,9 +18,9 @@ export default function signatureBaseString({
     4. Append the ‘&’ character to the output string.
     5. Percent encode the parameter string and append it to the output string.
 */
-  const paramString = parameterString(oAuthOptions, queryParams, bodyParams);
-  const outputString = `${requestMethod.toUpperCase()}&${percentEncode(
-    baseUrl
+  const paramString = parameterString(oAuthOptions, params, data);
+  const outputString = `${method.toUpperCase()}&${percentEncode(
+    baseURL
   )}&${percentEncode(paramString)}`;
   return outputString;
 }

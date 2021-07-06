@@ -9,10 +9,10 @@ jest.mock("./helpers", () => ({
   randomString: jest.fn(() => "kYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg"),
 }));
 
-const requestMethod = "POST";
-const baseUrl = "https://api.twitter.com/1.1/statuses/update.json";
-const queryParams = { include_entities: "true" };
-const bodyParams = {
+const method = "POST";
+const baseURL = "https://api.twitter.com/1.1/statuses/update.json";
+const params = { include_entities: "true" };
+const data = {
   status: "Hello Ladies + Gentlemen, a signed OAuth request!",
 };
 const oAuthOptions = {
@@ -25,10 +25,10 @@ const oAuthOptions = {
 it("should return the authorization header string", () => {
   expect(
     authorization({
-      requestMethod,
-      baseUrl,
-      queryParams,
-      bodyParams,
+      method,
+      baseURL,
+      params,
+      data,
       oAuthOptions,
     })
   ).toBe(
