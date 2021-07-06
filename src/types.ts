@@ -28,10 +28,11 @@ export type AuthorizationOptions = RequestOptions & {
   oAuthOptions: BaseOAuthOptions;
 };
 
-export type Authorization =
-  | { Authorization: string }
-  | {
-      Authorization: string;
-      "Content-Type": "application/x-www-form-urlencoded";
-      "Content-Length": number;
-    };
+export type Authorization = {
+  body: string;
+  headers: {
+    Authorization: string;
+    "Content-Type": "application/x-www-form-urlencoded";
+    "Content-Length": number;
+  };
+};

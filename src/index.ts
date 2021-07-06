@@ -11,19 +11,22 @@ function buildBody(
   });
 }
 
-export default function buildHeaders(
+export default function oAuthV1Headers(
   options: AuthorizationOptions
 ): Authorization {
-  if (options.bodyParams) {
-    const body = buildBody(options.bodyParams);
-    return {
+  // if (options.bodyParams) {
+  const body = buildBody(options.bodyParams || {});
+  return {
+    body,
+    headers: {
       "Content-Type": "application/x-www-form-urlencoded",
       "Content-Length": Buffer.byteLength(body),
       Authorization: authorization(options),
-    };
-  }
-
-  return {
-    Authorization: authorization(options),
+    },
   };
+  // }
+
+  // return {
+  //   Authorization: authorization(options),
+  // };
 }

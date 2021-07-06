@@ -35,7 +35,7 @@ export default function parameterString(
   /*
     Collecting parameters
   */
-  const params = Object.assign(queryParams, bodyParams, {
+  const params = Object.assign(queryParams || {}, bodyParams || {}, {
     oauth_consumer_key: signatureOptions.api_key,
     oauth_nonce: signatureOptions.oauth_nonce,
     oauth_signature_method: "HMAC-SHA1",
