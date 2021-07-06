@@ -1,7 +1,7 @@
 {
   "name": "twitter-v1-oauth",
   "version": "1.0.0",
-  "description": "",
+  "description": "OAuth 1.0a authorization header for Twitter API ",
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
@@ -16,6 +16,8 @@
     "@types/node": "^16.0.0",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
+    "axios": "^0.21.1",
+    "dotenv": "^10.0.0",
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
     "jest": "^27.0.6",
