@@ -1,8 +1,4 @@
-import {
-  RequestOptions,
-  BaseOAuthOptions,
-  ExtendedOAuthOptions,
-} from "../../types";
+import { RequestOptions, SignatureOAuthOptions } from "../../types";
 import { percentEncode } from "../helpers";
 import parameterString from "./parameterString";
 
@@ -13,8 +9,7 @@ export default function signatureBaseString({
   bodyParams,
   oAuthOptions,
 }: RequestOptions & {
-  oAuthOptions: Pick<BaseOAuthOptions, "access_token" | "api_key"> &
-    ExtendedOAuthOptions;
+  oAuthOptions: SignatureOAuthOptions;
 }): string {
   /*
     1. Convert the HTTP Method to uppercase and set the output string equal to this value.

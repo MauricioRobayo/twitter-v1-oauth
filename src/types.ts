@@ -10,6 +10,12 @@ export type ExtendedOAuthOptions = {
   oauth_timestamp: number;
 };
 
+export type SignatureOAuthOptions = Pick<
+  BaseOAuthOptions,
+  "access_token" | "api_key"
+> &
+  ExtendedOAuthOptions;
+
 export type RequestOptions = {
   baseUrl: string;
   subdomain?: string;
