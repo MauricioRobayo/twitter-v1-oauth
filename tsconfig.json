@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "removeComments": true,
+    "importHelpers": true,
+    "target": "es2019",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "lib",
+    "declaration": true
+  },
+  "include": ["src"]
+}
