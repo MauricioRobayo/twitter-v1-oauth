@@ -1,7 +1,7 @@
 import qs from "querystring";
 import authorization from "./authorization/authorization";
 import { percentEncode } from "./authorization/helpers";
-import { Authorization, Options } from "./types";
+import { AuthorizationOptions, Authorization } from "./types";
 
 function buildBody(
   bodyParams: Record<string, string | number | boolean>
@@ -11,7 +11,9 @@ function buildBody(
   });
 }
 
-export default function buildHeaders(options: Options): Authorization {
+export default function buildHeaders(
+  options: AuthorizationOptions
+): Authorization {
   if (options.bodyParams) {
     const body = buildBody(options.bodyParams);
     return {

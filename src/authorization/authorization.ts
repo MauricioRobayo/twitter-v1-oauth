@@ -1,8 +1,8 @@
-import { Options } from "../types";
+import { AuthorizationOptions } from "../types";
 import { randomString, timestamp, percentEncode } from "./helpers";
 import signature from "./modules/signature";
 
-export default function authorization(options: Options): string {
+export default function authorization(options: AuthorizationOptions): string {
   /*
     You should be able to see that the header contains 7 key/value pairs, where the keys all begin with the string “oauth_”. For any given Twitter API request, collecting these 7 values and creating a similar header will allow you to specify authorization for the request.
   */
@@ -22,7 +22,7 @@ export default function authorization(options: Options): string {
   */
   oAuthParams.oauth_signature = signature({
     ...options,
-    oAuthOptions: { ...options.oAuthOptions, ...oAuthParams },
+    signatureOptions: { ...options.oAuthOptions, ...oAuthParams },
   });
 
   /*

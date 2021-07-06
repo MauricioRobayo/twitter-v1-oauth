@@ -1,4 +1,4 @@
-import { OAuthOptions } from "../../types";
+import { SignatureOAuthOptions, OAuthOptions } from "../../types";
 import { percentEncode } from "../helpers";
 
 function buildOutputString(
@@ -28,7 +28,8 @@ function encodeParams(params: Record<string, string>): Record<string, string> {
 }
 
 export default function parameterString(
-  oAuthOptions: OAuthOptions,
+  oAuthOptions: Pick<OAuthOptions, "access_token" | "api_key"> &
+    SignatureOAuthOptions,
   queryParams?: Record<string, string>,
   bodyParams?: Record<string, string | number | boolean>
 ): string {
