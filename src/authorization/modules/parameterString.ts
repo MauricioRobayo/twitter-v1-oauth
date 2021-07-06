@@ -1,4 +1,4 @@
-import { SignatureOAuthOptions, OAuthOptions } from "../../types";
+import { BaseOAuthOptions, ExtendedOAuthOptions } from "../../types";
 import { percentEncode } from "../helpers";
 
 function buildOutputString(
@@ -28,8 +28,8 @@ function encodeParams(params: Record<string, string>): Record<string, string> {
 }
 
 export default function parameterString(
-  oAuthOptions: Pick<OAuthOptions, "access_token" | "api_key"> &
-    SignatureOAuthOptions,
+  signatureOptions: Pick<BaseOAuthOptions, "access_token" | "api_key"> &
+    ExtendedOAuthOptions,
   queryParams?: Record<string, string>,
   bodyParams?: Record<string, string | number | boolean>
 ): string {
@@ -37,11 +37,11 @@ export default function parameterString(
     Collecting parameters
   */
   const params = Object.assign(queryParams, bodyParams, {
-    oauth_consumer_key: oAuthOptions.api_key,
-    oauth_nonce: oAuthOptions.oauth_nonce,
+    oauth_consumer_key: signatureOptions.api_key,
+    oauth_nonce: signatureOptions.oauth_nonce,
     oauth_signature_method: "HMAC-SHA1",
-    oauth_timestamp: oAuthOptions.oauth_timestamp,
-    oauth_token: oAuthOptions.access_token,
+    oauth_timestamp: signatureOptions.oauth_timestamp,
+    oauth_token: signatureOptions.access_token,
     oauth_version: "1.0",
   });
   /*

@@ -6,7 +6,7 @@ const queryParams = { include_entities: "true" };
 const bodyParams = {
   status: "Hello Ladies + Gentlemen, a signed OAuth request!",
 };
-const signatureOptions = {
+const oAuthOptions = {
   api_key: "xvz1evFS4wEEPTGEFPHBog",
   api_secret_key: "kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw",
   access_token: "370773112-GmHxMAgYyLbNEtIKZeRNFsMKPR9EyMZeS9weJAEb",
@@ -22,7 +22,7 @@ it("should return the signature", () => {
       baseUrl,
       queryParams,
       bodyParams,
-      signatureOptions,
+      oAuthOptions,
     })
   ).toBe("hCtSmYh+iHYCEqBWrE7C7hYmtUk=");
 });

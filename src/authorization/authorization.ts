@@ -22,7 +22,7 @@ export default function authorization(options: AuthorizationOptions): string {
   */
   oAuthParams.oauth_signature = signature({
     ...options,
-    signatureOptions: { ...options.oAuthOptions, ...oAuthParams },
+    oAuthOptions: { ...options.oAuthOptions, ...oAuthParams },
   });
 
   /*

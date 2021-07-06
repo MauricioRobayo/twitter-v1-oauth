@@ -1,11 +1,11 @@
-export type OAuthOptions = {
+export type BaseOAuthOptions = {
   api_key: string;
   api_secret_key: string;
   access_token: string;
   access_token_secret: string;
 };
 
-export type SignatureOAuthOptions = {
+export type ExtendedOAuthOptions = {
   oauth_nonce: string;
   oauth_timestamp: number;
 };
@@ -19,11 +19,7 @@ export type RequestOptions = {
 };
 
 export type AuthorizationOptions = RequestOptions & {
-  oAuthOptions: OAuthOptions;
-};
-
-export type SignatureOptions = RequestOptions & {
-  signatureOptions: OAuthOptions & SignatureOAuthOptions;
+  oAuthOptions: BaseOAuthOptions;
 };
 
 export type Authorization =
