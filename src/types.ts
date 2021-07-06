@@ -27,12 +27,3 @@ export type RequestOptions = {
 export type AuthorizationOptions = RequestOptions & {
   oAuthOptions: BaseOAuthOptions;
 };
-
-export type Authorization = {
-  body: string;
-  headers: {
-    Authorization: string;
-    "Content-Type": "application/x-www-form-urlencoded";
-    "Content-Length": number;
-  };
-};

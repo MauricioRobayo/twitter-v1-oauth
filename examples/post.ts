@@ -25,8 +25,6 @@ const auth = oAuthV1Headers({
   bodyParams,
 });
 
-console.log(auth);
-
 axios
   .request({
     method: requestMethod,
