@@ -1,4 +1,5 @@
 import qs from "querystring";
+import authorization from "./authorization/authorization";
 import { percentEncode } from "./authorization/helpers";
 import { Authorization, Options } from "./types";
 
@@ -11,15 +12,16 @@ function buildBody(
 }
 
 export default function buildHeaders(options: Options): Authorization {
-  const body = options.bodyParams ? buildBody(options.bodyParams) : "";
-  return {
-    "Content-Type": "application/x-www-form-urlencoded",
-    "Content-Length": Buffer.byteLength(body),
-    Authorization: authorization(options),
-    "cache-control": "no-cache",
-  };
-}
+  if (options.bodyParams) {
+    const body = buildBody(options.bodyParams);
+    return {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Content-Length": Buffer.byteLength(body),
+      Authorization: authorization(options),
+    };
+  }
 
-function authorization(_options: any): string {
-  throw new Error("Function not implemented.");
+  return {
+    Authorization: authorization(options),
+  };
 }
