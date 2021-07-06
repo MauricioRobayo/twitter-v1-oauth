@@ -14,24 +14,21 @@ const oAuthOptions: BaseOAuthOptions = {
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET || "",
 };
 
-const baseUrl = "https://api.twitter.com/1.1/statuses/update.json";
-const requestMethod = "POST";
-const bodyParams = { status: "Hello World!" };
+const baseURL = "https://api.twitter.com/1.1/statuses/update.json";
+const method = "POST";
+const data = { status: "Hello World!" };
 
-const auth = oAuthV1Headers({
+const requestOptions = oAuthV1Headers({
   oAuthOptions,
-  requestMethod,
-  baseUrl,
-  bodyParams,
+  method,
+  baseURL,
+  data,
 });
 
+console.log(requestOptions);
+
 axios
-  .request({
-    method: requestMethod,
-    baseURL: baseUrl,
-    headers: auth.headers,
-    data: auth.body,
-  })
+  .request(requestOptions)
   .then((data) => console.log(data))
   .catch((err) => {
     if (err.response) {
