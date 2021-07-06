@@ -11,6 +11,17 @@ function buildBody(
   });
 }
 
+export default function oAuthV1Headers(options: AuthorizationOptions): {
+  method: "GET" | "PUT" | "POST" | "DELETE";
+  baseURL: string;
+  params: Record<string, string>;
+  data: string;
+  headers: {
+    Authorization: string;
+    "Content-Type": "application/x-www-form-urlencoded";
+    "Content-Length": number;
+  };
+};
 export default function oAuthV1Headers(
   options: Omit<AuthorizationOptions, "data">
 ): {
@@ -66,6 +77,17 @@ export default function oAuthV1Headers(options: AuthorizationOptions):
       baseURL: string;
       headers: {
         Authorization: string;
+      };
+    }
+  | {
+      method: "GET" | "PUT" | "POST" | "DELETE";
+      baseURL: string;
+      params: Record<string, string>;
+      data: string;
+      headers: {
+        Authorization: string;
+        "Content-Type": "application/x-www-form-urlencoded";
+        "Content-Length": number;
       };
     } {
   if (options.data) {
