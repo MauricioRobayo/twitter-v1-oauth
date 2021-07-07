@@ -1,4 +1,4 @@
-import { percentEncode, randomString, timestamp } from "./helpers";
+import { percentEncode, randomString } from "./helpers";
 
 // https://developer.twitter.com/en/docs/basics/authentication/guides/percent-encoding-parameters.html
 describe("should percent encode a string according to RFC 3986, Section 2.1.", () => {
