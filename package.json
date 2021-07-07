@@ -4,6 +4,7 @@
   "description": "OAuth 1.0a authorization header for Twitter API",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint src",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watch",
     "build": "tsc",
