@@ -10,8 +10,14 @@
     "build": "tsc",
     "build:watch": "tsc --watch"
   },
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "keywords": [
+    "twitter",
+    "api",
+    "oauth",
+    "authorization"
+  ],
+  "author": "Mauricio Robayo <rfmajo@gmail.com> (https://www.mauriciorobayo.com)",
   "devDependencies": {
     "@types/jest": "^26.0.23",
     "@types/node": "^16.0.0",
