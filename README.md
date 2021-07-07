@@ -66,7 +66,7 @@ Use your preferred library to send the request using the documented endpoints an
 const authRequest = require("twitter-v1-oauth").default;
 ```
 
-### ES6 Modules
+#### ES6 Modules
 
 ```js
 import oAuthV1Request from "twitter-v1-oauth";
