@@ -90,6 +90,21 @@ export default function oAuthV1Request(options: AuthorizationOptions):
         "Content-Length": number;
       };
     } {
+  if (options.params && options.data) {
+    const data = buildBody(options.data || {});
+    return {
+      baseURL: options.baseURL,
+      method: options.method,
+      params: options.params,
+      data,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Length": Buffer.byteLength(data),
+        Authorization: authorization(options),
+      },
+    };
+  }
+
   if (options.data) {
     const data = buildBody(options.data || {});
     return {

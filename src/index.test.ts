@@ -7,10 +7,13 @@ const oAuthOptions = {
   access_token_secret: "LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE",
 };
 const baseURL = "https://api.twitter.com/1.1/search/tweets.json";
+const params = { q: "twitter bot" };
+const data = { status: "Hello World!" };
+const expectedData = "status=Hello%20World%21";
+
 describe("oAuthV1Headers", () => {
   it("should return the correct request with params", () => {
     const method = "GET";
-    const params = { q: "twitter bot" };
     const searchRequest = oAuthV1Request({
       oAuthOptions,
       method,
@@ -30,17 +33,54 @@ describe("oAuthV1Headers", () => {
 
   it("should return the correct request with body", () => {
     const method = "POST";
-    const data = { status: "Hello World!" };
     const searchRequest = oAuthV1Request({
       oAuthOptions,
       method,
       baseURL,
       data,
     });
-    const expectedData = "status=Hello%20World%21";
     expect(searchRequest).toEqual({
       baseURL,
       method,
+      data: expectedData,
+      headers: {
+        "Content-Length": expectedData.length,
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: expect.stringContaining("OAuth"),
+      },
+    });
+  });
+
+  it("should return the correct request without body and params", () => {
+    const method = "POST";
+    const searchRequest = oAuthV1Request({
+      oAuthOptions,
+      method,
+      baseURL,
+    });
+    expect(searchRequest).toEqual({
+      baseURL,
+      method,
+      headers: {
+        Authorization: expect.stringContaining("OAuth"),
+      },
+    });
+  });
+
+  it("should return the correct request with body and params", () => {
+    const method = "POST";
+    const searchRequest = oAuthV1Request({
+      oAuthOptions,
+      method,
+      baseURL,
+      params,
+      data,
+    });
+
+    expect(searchRequest).toEqual({
+      baseURL,
+      method,
+      params,
       data: expectedData,
       headers: {
         "Content-Length": expectedData.length,
