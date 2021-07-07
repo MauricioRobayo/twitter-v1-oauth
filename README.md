@@ -66,13 +66,17 @@ Use your preferred library to send the request using the documented endpoints an
 const authRequest = require("twitter-v1-oauth").default;
 ```
 
-### TypeScript
+### ES6 Modules
 
-Type definitions are included. A TypeScript example is provided [here](./examples/search-tweets.ts), you can run it with `npm run example:search-ts`.
-
-```ts
+```js
 import oAuthV1Request from "twitter-v1-oauth";
 ```
+
+#### TypeScript
+
+Type definitions are included.
+
+## Examples
 
 Check the [examples](./examples) directory for ideas on how to use it with [axios](https://github.com/axios/axios).
 
