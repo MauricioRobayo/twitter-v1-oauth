@@ -11,7 +11,7 @@ function buildBody(
   });
 }
 
-export default function oAuthV1Headers(options: AuthorizationOptions): {
+export default function oAuthV1Request(options: AuthorizationOptions): {
   method: "GET" | "PUT" | "POST" | "DELETE";
   baseURL: string;
   params: Record<string, string>;
@@ -22,7 +22,7 @@ export default function oAuthV1Headers(options: AuthorizationOptions): {
     "Content-Length": number;
   };
 };
-export default function oAuthV1Headers(
+export default function oAuthV1Request(
   options: Omit<AuthorizationOptions, "data">
 ): {
   method: "GET" | "PUT" | "POST" | "DELETE";
@@ -32,7 +32,7 @@ export default function oAuthV1Headers(
     Authorization: string;
   };
 };
-export default function oAuthV1Headers(
+export default function oAuthV1Request(
   options: Omit<AuthorizationOptions, "params">
 ): {
   method: "GET" | "PUT" | "POST" | "DELETE";
@@ -44,7 +44,7 @@ export default function oAuthV1Headers(
     "Content-Length": number;
   };
 };
-export default function oAuthV1Headers(
+export default function oAuthV1Request(
   options: Omit<AuthorizationOptions, "params" | "data">
 ): {
   method: "GET" | "PUT" | "POST" | "DELETE";
@@ -53,7 +53,7 @@ export default function oAuthV1Headers(
     Authorization: string;
   };
 };
-export default function oAuthV1Headers(options: AuthorizationOptions):
+export default function oAuthV1Request(options: AuthorizationOptions):
   | {
       method: "GET" | "PUT" | "POST" | "DELETE";
       baseURL: string;
@@ -90,6 +90,21 @@ export default function oAuthV1Headers(options: AuthorizationOptions):
         "Content-Length": number;
       };
     } {
+  if (options.params && options.data) {
+    const data = buildBody(options.data || {});
+    return {
+      baseURL: options.baseURL,
+      method: options.method,
+      params: options.params,
+      data,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Length": Buffer.byteLength(data),
+        Authorization: authorization(options),
+      },
+    };
+  }
+
   if (options.data) {
     const data = buildBody(options.data || {});
     return {

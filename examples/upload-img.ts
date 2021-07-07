@@ -3,7 +3,7 @@
 import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
-import oAuthV1Headers from "../src/index";
+import oAuthV1Request from "../src/index";
 import { BaseOAuthOptions } from "../src/types";
 import axios from "axios";
 
@@ -19,21 +19,19 @@ const oAuthOptions: BaseOAuthOptions = {
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET || "",
 };
 
-const method = "POST";
-
-const imgRequestOptions = oAuthV1Headers({
+const imgUpload = oAuthV1Request({
   oAuthOptions,
-  method,
+  method: "POST",
   baseURL: "https://upload.twitter.com/1.1/media/upload.json",
   data: { media_data: b64content },
 });
 
 axios
-  .request(imgRequestOptions)
+  .request(imgUpload)
   .then(({ data }) => {
-    const tweetRequestOptions = oAuthV1Headers({
+    const tweetRequestOptions = oAuthV1Request({
       oAuthOptions,
-      method,
+      method: "POST",
       baseURL: "https://api.twitter.com/1.1/statuses/update.json",
       data: {
         status: "Hello World IND SIG!",
@@ -46,8 +44,7 @@ axios
   .then((data) => console.log(data))
   .catch((err) => {
     if (err.response) {
-      console.log(err.response);
-      return console.log(err.response.data.errors);
+      return console.log(err.response);
     }
     console.log(err);
   });
