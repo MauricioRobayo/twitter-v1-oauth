@@ -36,10 +36,3 @@ describe("should generate random alphanumeric string of given length", () => {
     expect(randomString(-15).length).toBe(0);
   });
 });
-
-it("should generate the Unix Epoch timestamp for the present moment", () => {
-  const date = new Date();
-  const time = date.getTime();
-  const epochTimeStamp = Math.round(time / 1000);
-  expect(timestamp()).toBe(epochTimeStamp);
-});

@@ -46,7 +46,7 @@ No dependencies and super small: [![install size](https://packagephobia.now.sh/b
 ## Install
 
 ```shell
-npm install twitter-v1-o
+npm install twitter-v1-oauth
 ```
 
 ## Usage
