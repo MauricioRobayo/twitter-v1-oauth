@@ -18,12 +18,10 @@ export default function authorization(options: AuthorizationOptions): string {
     oAuthOptions: { ...options.oAuthOptions, ...oAuthParams },
   });
 
-  const outputString = `OAuth ${Object.entries(oAuthParams)
+  return `OAuth ${Object.entries(oAuthParams)
     .map(
       ([key, value]) =>
         `${percentEncode(key)}="${percentEncode(String(value))}"`
     )
     .join(", ")}`;
-
-  return outputString;
 }
