@@ -30,13 +30,7 @@ axios
   .then(({ data }) => console.log(data))
   .catch((err) => {
     if (err.response) {
-      if (err.response.data?.errors) {
-        console.log(err.response.data.errors);
-        return;
-      }
-      console.log(err.response);
-      return;
+      return console.log(err.response);
     }
-
     console.log(err);
   });
