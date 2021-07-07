@@ -14,14 +14,14 @@ const expectedData = "status=Hello%20World%21";
 describe("oAuthV1Headers", () => {
   it("should return the correct request with params", () => {
     const method = "GET";
-    const searchRequest = oAuthV1Request({
+    const request = oAuthV1Request({
       oAuthOptions,
       method,
       baseURL,
       params,
     });
 
-    expect(searchRequest).toEqual({
+    expect(request).toEqual({
       baseURL,
       method,
       params,
@@ -33,13 +33,13 @@ describe("oAuthV1Headers", () => {
 
   it("should return the correct request with body", () => {
     const method = "POST";
-    const searchRequest = oAuthV1Request({
+    const request = oAuthV1Request({
       oAuthOptions,
       method,
       baseURL,
       data,
     });
-    expect(searchRequest).toEqual({
+    expect(request).toEqual({
       baseURL,
       method,
       data: expectedData,
@@ -53,12 +53,12 @@ describe("oAuthV1Headers", () => {
 
   it("should return the correct request without body and params", () => {
     const method = "POST";
-    const searchRequest = oAuthV1Request({
+    const request = oAuthV1Request({
       oAuthOptions,
       method,
       baseURL,
     });
-    expect(searchRequest).toEqual({
+    expect(request).toEqual({
       baseURL,
       method,
       headers: {
@@ -69,7 +69,7 @@ describe("oAuthV1Headers", () => {
 
   it("should return the correct request with body and params", () => {
     const method = "POST";
-    const searchRequest = oAuthV1Request({
+    const request = oAuthV1Request({
       oAuthOptions,
       method,
       baseURL,
@@ -77,7 +77,7 @@ describe("oAuthV1Headers", () => {
       data,
     });
 
-    expect(searchRequest).toEqual({
+    expect(request).toEqual({
       baseURL,
       method,
       params,
