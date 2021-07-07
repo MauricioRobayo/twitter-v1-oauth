@@ -13,7 +13,6 @@ const oAuthOptions: BaseOAuthOptions = {
   access_token: process.env.TWITTER_ACCESS_TOKEN || "",
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET || "",
 };
-
 const baseURL = "https://api.twitter.com/1.1/search/tweets.json";
 const method = "GET";
 const params = { q: "twitter bot" };
