@@ -74,7 +74,7 @@ Type definitions are included. A TypeScript example is provided [here](./example
 import oAuthV1Request from "twitter-v1-oauth";
 ```
 
-Check the [examples](./examples) directory to check how to use it with [axios](https://github.com/axios/axios).
+Check the [examples](./examples) directory for ideas on how to use it with [axios](https://github.com/axios/axios).
 
 The [index.test.ts](./src/index.test.ts) file should also provide a good idea on its usage.
 
