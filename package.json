@@ -2,7 +2,7 @@
   "name": "twitter-v1-oauth",
   "version": "1.0.0",
   "description": "OAuth 1.0a authorization header for Twitter API",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "lint": "eslint src",
     "test": "jest --coverage",
@@ -16,6 +16,9 @@
     "api",
     "oauth",
     "authorization"
+  ],
+  "files": [
+    "lib"
   ],
   "author": "Mauricio Robayo <rfmajo@gmail.com> (https://www.mauriciorobayo.com)",
   "devDependencies": {
