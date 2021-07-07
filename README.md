@@ -1,6 +1,11 @@
-# Twitter v1 OAuth 🔑
+# Twitter v1 OAuth 1.0a 🔑
 
-Simple and minimalist module to send authorized requests to the Twitter API.
+[![npm version](https://badge.fury.io/js/twitter-v1-oauth.svg)](https://www.npmjs.com/package/twitter-v1-oauth)
+[![Build Status](https://github.com/MauricioRobayo/twitter-v1-oauth/workflows/Test%20and%20Release/badge.svg)](https://github.com/MauricioRobayo/twitter-v1-oauth/actions)
+[![codecov](https://codecov.io/gh/MauricioRobayo/twitter-v1-oauth/branch/main/graph/badge.svg?token=M2SaEIeOtO)](https://codecov.io/gh/MauricioRobayo/twitter-v1-oauth)
+[![CodeFactor](https://www.codefactor.io/repository/github/mauriciorobayo/twitter-v1-oauth/badge)](https://www.codefactor.io/repository/github/mauriciorobayo/twitter-v1-oauth)
+
+Simple and minimalist module to send OAuth 1.0a requests to the Twitter API.
 
 It returns an object with the request options necessary to make a request using your favorite tool.
 
