@@ -3,7 +3,7 @@
 import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
-import oAuthV1Headers from "../src/index";
+import oAuthV1Request from "../src/index";
 import { BaseOAuthOptions } from "../src/types";
 import axios from "axios";
 
@@ -19,7 +19,7 @@ const oAuthOptions: BaseOAuthOptions = {
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET || "",
 };
 
-const imgUpload = oAuthV1Headers({
+const imgUpload = oAuthV1Request({
   oAuthOptions,
   method: "POST",
   baseURL: "https://upload.twitter.com/1.1/media/upload.json",
@@ -29,7 +29,7 @@ const imgUpload = oAuthV1Headers({
 axios
   .request(imgUpload)
   .then(({ data }) => {
-    const tweetRequestOptions = oAuthV1Headers({
+    const tweetRequestOptions = oAuthV1Request({
       oAuthOptions,
       method: "POST",
       baseURL: "https://api.twitter.com/1.1/statuses/update.json",

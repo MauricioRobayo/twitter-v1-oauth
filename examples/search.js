@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 // https://developer.twitter.com/en/apps/
 require("dotenv").config();
-const oAuthV1Headers = require("../lib/index").default;
+const oAuthV1Request = require("../lib/index").default;
 const axios = require("axios").default;
 
 const oAuthOptions = {
@@ -15,7 +15,7 @@ const baseURL = "https://api.twitter.com/1.1/search/tweets.json";
 const method = "GET";
 const params = { q: "twitter bot" };
 
-const searchRequest = oAuthV1Headers({
+const searchRequest = oAuthV1Request({
   oAuthOptions,
   method,
   baseURL,
