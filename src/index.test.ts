@@ -11,82 +11,80 @@ const params = { q: "twitter bot" };
 const data = { status: "Hello World!" };
 const expectedData = "status=Hello%20World%21";
 
-describe("oAuthV1Headers", () => {
-  it("should return the correct request with params", () => {
-    const method = "GET";
-    const request = oAuthV1Request({
-      oAuthOptions,
-      method,
-      baseURL,
-      params,
-    });
-
-    expect(request).toEqual({
-      baseURL,
-      method,
-      params,
-      headers: {
-        Authorization: expect.stringContaining("OAuth"),
-      },
-    });
+it("should return the correct request with params", () => {
+  const method = "GET";
+  const request = oAuthV1Request({
+    oAuthOptions,
+    method,
+    baseURL,
+    params,
   });
 
-  it("should return the correct request with body", () => {
-    const method = "POST";
-    const request = oAuthV1Request({
-      oAuthOptions,
-      method,
-      baseURL,
-      data,
-    });
-    expect(request).toEqual({
-      baseURL,
-      method,
-      data: expectedData,
-      headers: {
-        "Content-Length": expectedData.length,
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: expect.stringContaining("OAuth"),
-      },
-    });
+  expect(request).toEqual({
+    baseURL,
+    method,
+    params,
+    headers: {
+      Authorization: expect.stringContaining("OAuth"),
+    },
+  });
+});
+
+it("should return the correct request with body", () => {
+  const method = "POST";
+  const request = oAuthV1Request({
+    oAuthOptions,
+    method,
+    baseURL,
+    data,
+  });
+  expect(request).toEqual({
+    baseURL,
+    method,
+    data: expectedData,
+    headers: {
+      "Content-Length": expectedData.length,
+      "Content-Type": "application/x-www-form-urlencoded",
+      Authorization: expect.stringContaining("OAuth"),
+    },
+  });
+});
+
+it("should return the correct request without body and params", () => {
+  const method = "POST";
+  const request = oAuthV1Request({
+    oAuthOptions,
+    method,
+    baseURL,
+  });
+  expect(request).toEqual({
+    baseURL,
+    method,
+    headers: {
+      Authorization: expect.stringContaining("OAuth"),
+    },
+  });
+});
+
+it("should return the correct request with body and params", () => {
+  const method = "POST";
+  const request = oAuthV1Request({
+    oAuthOptions,
+    method,
+    baseURL,
+    params,
+    data,
   });
 
-  it("should return the correct request without body and params", () => {
-    const method = "POST";
-    const request = oAuthV1Request({
-      oAuthOptions,
-      method,
-      baseURL,
-    });
-    expect(request).toEqual({
-      baseURL,
-      method,
-      headers: {
-        Authorization: expect.stringContaining("OAuth"),
-      },
-    });
-  });
-
-  it("should return the correct request with body and params", () => {
-    const method = "POST";
-    const request = oAuthV1Request({
-      oAuthOptions,
-      method,
-      baseURL,
-      params,
-      data,
-    });
-
-    expect(request).toEqual({
-      baseURL,
-      method,
-      params,
-      data: expectedData,
-      headers: {
-        "Content-Length": expectedData.length,
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: expect.stringContaining("OAuth"),
-      },
-    });
+  expect(request).toEqual({
+    baseURL,
+    method,
+    params,
+    data: expectedData,
+    headers: {
+      "Content-Length": expectedData.length,
+      "Content-Type": "application/x-www-form-urlencoded",
+      Authorization: expect.stringContaining("OAuth"),
+    },
   });
 });
