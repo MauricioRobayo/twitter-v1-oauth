@@ -5,7 +5,7 @@
 [![codecov](https://codecov.io/gh/MauricioRobayo/twitter-v1-oauth/branch/main/graph/badge.svg?token=M2SaEIeOtO)](https://codecov.io/gh/MauricioRobayo/twitter-v1-oauth)
 [![CodeFactor](https://www.codefactor.io/repository/github/mauriciorobayo/twitter-v1-oauth/badge)](https://www.codefactor.io/repository/github/mauriciorobayo/twitter-v1-oauth)
 
-Simple and minimalist module to send OAuth 1.0a requests to the Twitter API.
+Simple and minimalist module to send OAuth 1.0a requests to the Twitter API v1.1.
 
 It returns an object with the request options necessary to make a request using your favorite tool.
 
