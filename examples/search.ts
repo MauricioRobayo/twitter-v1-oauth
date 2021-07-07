@@ -14,23 +14,29 @@ const oAuthOptions: BaseOAuthOptions = {
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET || "",
 };
 
-const baseUrl = "https://api.twitter.com/1.1/search/tweets.json";
-const requestMethod = "GET";
-const queryParams = { q: "twitter bot" };
+const baseURL = "https://api.twitter.com/1.1/search/tweets.json";
+const method = "GET";
+const params = { q: "twitter bot" };
 
-const headers = oAuthV1Headers({
+const searchRequest = oAuthV1Headers({
   oAuthOptions,
-  requestMethod,
-  baseUrl,
-  queryParams: { q: "twitter bot" },
+  method,
+  baseURL,
+  params,
 });
 
 axios
-  .request({
-    method: requestMethod,
-    baseURL: baseUrl,
-    params: queryParams,
-    headers,
-  })
+  .request(searchRequest)
   .then(({ data }) => console.log(data))
-  .catch((err) => console.log(err.response.data.errors));
+  .catch((err) => {
+    if (err.response) {
+      if (err.response.data?.errors) {
+        console.log(err.response.data.errors);
+        return;
+      }
+      console.log(err.response);
+      return;
+    }
+
+    console.log(err);
+  });
