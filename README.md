@@ -1,7 +1,7 @@
 # Twitter v1 OAuth 1.0a 🔑
 
 [![npm version](https://badge.fury.io/js/twitter-v1-oauth.svg)](https://www.npmjs.com/package/twitter-v1-oauth)
-[![Build Status](https://github.com/MauricioRobayo/twitter-v1-oauth/workflows/Build%20and%Test/badge.svg)](https://github.com/MauricioRobayo/twitter-v1-oauth/actions)
+[![Build and Test](https://github.com/MauricioRobayo/twitter-v1-oauth/actions/workflows/main.yml/badge.svg)](https://github.com/MauricioRobayo/twitter-v1-oauth/actions/workflows/main.yml)
 [![codecov](https://codecov.io/gh/MauricioRobayo/twitter-v1-oauth/branch/main/graph/badge.svg?token=M2SaEIeOtO)](https://codecov.io/gh/MauricioRobayo/twitter-v1-oauth)
 [![CodeFactor](https://www.codefactor.io/repository/github/mauriciorobayo/twitter-v1-oauth/badge)](https://www.codefactor.io/repository/github/mauriciorobayo/twitter-v1-oauth)
 
