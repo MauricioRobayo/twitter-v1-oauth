@@ -1,4 +1,4 @@
-# Twitter v1 OAuth 1.0a 🔑
+# Twitter API v1.1 OAuth 1.0a 🔑
 
 [![npm version](https://badge.fury.io/js/twitter-v1-oauth.svg)](https://www.npmjs.com/package/twitter-v1-oauth)
 [![Build and Test](https://github.com/MauricioRobayo/twitter-v1-oauth/actions/workflows/main.yml/badge.svg)](https://github.com/MauricioRobayo/twitter-v1-oauth/actions/workflows/main.yml)
