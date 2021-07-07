@@ -1,4 +1,4 @@
-name: Test and Release
+name: Build and Test
 
 on:
   pull_request:
@@ -37,3 +37,4 @@ jobs:
           npm run lint
           npm test
           npx codecov
+          npm build
