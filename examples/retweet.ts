@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 // https://developer.twitter.com/en/apps/
 import dotenv from "dotenv";
-import oAuthV1Request from "../src/index";
+import oAuthRequest from "../src/index";
 import { BaseOAuthOptions } from "../src/types";
 import axios from "axios";
 
@@ -17,7 +17,7 @@ const baseURL =
   "https://api.twitter.com/1.1/statuses/retweet/1397568983931392004.json";
 const method = "POST";
 
-const retweetRequest = oAuthV1Request({
+const retweetRequest = oAuthRequest({
   oAuthOptions,
   method,
   baseURL,

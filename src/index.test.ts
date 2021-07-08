@@ -1,4 +1,4 @@
-import oAuthV1Request from ".";
+import oAuthRequest from ".";
 
 const oAuthOptions = {
   api_key: "xvz1evFS4wEEPTGEFPHBog",
@@ -13,7 +13,7 @@ const expectedData = "status=Hello%20World%21";
 
 it("should return the correct request with params", () => {
   const method = "GET";
-  const request = oAuthV1Request({
+  const request = oAuthRequest({
     oAuthOptions,
     method,
     baseURL,
@@ -35,7 +35,7 @@ it("should return the correct request with params", () => {
 
 it("should return the correct request with body", () => {
   const method = "POST";
-  const request = oAuthV1Request({
+  const request = oAuthRequest({
     oAuthOptions,
     method,
     baseURL,
@@ -56,7 +56,7 @@ it("should return the correct request with body", () => {
 
 it("should return the correct request without body and params", () => {
   const method = "POST";
-  const request = oAuthV1Request({
+  const request = oAuthRequest({
     oAuthOptions,
     method,
     baseURL,
@@ -76,7 +76,7 @@ it("should return the correct request without body and params", () => {
 
 it("should return the correct request with body and params", () => {
   const method = "POST";
-  const request = oAuthV1Request({
+  const request = oAuthRequest({
     oAuthOptions,
     method,
     baseURL,

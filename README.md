@@ -11,7 +11,7 @@ It returns an object with the request options necessary to make a request using 
 
 ```typescript
 import dotenv from "dotenv";
-import oAuthV1Request from "twitter-v1-oauth";
+import oAuthRequest from "twitter-v1-oauth";
 import axios from "axios";
 
 dotenv.config();
@@ -26,7 +26,7 @@ const baseURL = "https://api.twitter.com/1.1/search/tweets.json";
 const method = "GET";
 const params = { q: "twitter bot" };
 
-const searchRequest = oAuthV1Request({
+const searchRequest = oAuthRequest({
   oAuthOptions,
   method,
   baseURL,
@@ -74,7 +74,7 @@ const authRequest = require("twitter-v1-oauth").default;
 #### ES6 Modules
 
 ```js
-import oAuthV1Request from "twitter-v1-oauth";
+import oAuthRequest from "twitter-v1-oauth";
 ```
 
 #### TypeScript

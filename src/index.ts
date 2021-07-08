@@ -11,7 +11,7 @@ function buildBody(
   });
 }
 
-export default function oAuthV1Request({
+export default function oAuthRequest({
   baseURL,
   method,
   params = {},
