@@ -24,7 +24,10 @@ it("should return the correct request with params", () => {
     baseURL,
     method,
     params,
+    data: "",
     headers: {
+      "Content-Length": 0,
+      "Content-Type": "application/x-www-form-urlencoded",
       Authorization: expect.stringContaining("OAuth"),
     },
   });
@@ -42,6 +45,7 @@ it("should return the correct request with body", () => {
     baseURL,
     method,
     data: expectedData,
+    params: {},
     headers: {
       "Content-Length": expectedData.length,
       "Content-Type": "application/x-www-form-urlencoded",
@@ -60,7 +64,11 @@ it("should return the correct request without body and params", () => {
   expect(request).toEqual({
     baseURL,
     method,
+    params: {},
+    data: "",
     headers: {
+      "Content-Length": 0,
+      "Content-Type": "application/x-www-form-urlencoded",
       Authorization: expect.stringContaining("OAuth"),
     },
   });
