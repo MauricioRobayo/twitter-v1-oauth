@@ -11,7 +11,13 @@ function buildBody(
   });
 }
 
-export default function oAuthV1Request(options: AuthorizationOptions): {
+export default function oAuthV1Request({
+  baseURL,
+  method,
+  params = {},
+  data = {},
+  oAuthOptions,
+}: AuthorizationOptions): {
   method: "GET" | "PUT" | "POST" | "DELETE";
   baseURL: string;
   params: Record<string, string>;
@@ -21,120 +27,23 @@ export default function oAuthV1Request(options: AuthorizationOptions): {
     "Content-Type": "application/x-www-form-urlencoded";
     "Content-Length": number;
   };
-};
-export default function oAuthV1Request(
-  options: Omit<AuthorizationOptions, "data">
-): {
-  method: "GET" | "PUT" | "POST" | "DELETE";
-  baseURL: string;
-  params: Record<string, string>;
-  headers: {
-    Authorization: string;
-  };
-};
-export default function oAuthV1Request(
-  options: Omit<AuthorizationOptions, "params">
-): {
-  method: "GET" | "PUT" | "POST" | "DELETE";
-  baseURL: string;
-  data: string;
-  headers: {
-    Authorization: string;
-    "Content-Type": "application/x-www-form-urlencoded";
-    "Content-Length": number;
-  };
-};
-export default function oAuthV1Request(
-  options: Omit<AuthorizationOptions, "params" | "data">
-): {
-  method: "GET" | "PUT" | "POST" | "DELETE";
-  baseURL: string;
-  headers: {
-    Authorization: string;
-  };
-};
-export default function oAuthV1Request(options: AuthorizationOptions):
-  | {
-      method: "GET" | "PUT" | "POST" | "DELETE";
-      baseURL: string;
-      params: Record<string, string>;
-      headers: {
-        Authorization: string;
-      };
-    }
-  | {
-      method: "GET" | "PUT" | "POST" | "DELETE";
-      baseURL: string;
-      data: string;
-      headers: {
-        Authorization: string;
-        "Content-Type": "application/x-www-form-urlencoded";
-        "Content-Length": number;
-      };
-    }
-  | {
-      method: "GET" | "PUT" | "POST" | "DELETE";
-      baseURL: string;
-      headers: {
-        Authorization: string;
-      };
-    }
-  | {
-      method: "GET" | "PUT" | "POST" | "DELETE";
-      baseURL: string;
-      params: Record<string, string>;
-      data: string;
-      headers: {
-        Authorization: string;
-        "Content-Type": "application/x-www-form-urlencoded";
-        "Content-Length": number;
-      };
-    } {
-  if (options.params && options.data) {
-    const data = buildBody(options.data || {});
-    return {
-      baseURL: options.baseURL,
-      method: options.method,
-      params: options.params,
-      data,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Content-Length": Buffer.byteLength(data),
-        Authorization: authorization(options),
-      },
-    };
-  }
-
-  if (options.data) {
-    const data = buildBody(options.data || {});
-    return {
-      baseURL: options.baseURL,
-      method: options.method,
-      data,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Content-Length": Buffer.byteLength(data),
-        Authorization: authorization(options),
-      },
-    };
-  }
-
-  if (options.params) {
-    return {
-      baseURL: options.baseURL,
-      method: options.method,
-      params: options.params,
-      headers: {
-        Authorization: authorization(options),
-      },
-    };
-  }
-
+} {
+  const stringData = buildBody(data);
   return {
-    baseURL: options.baseURL,
-    method: options.method,
+    baseURL,
+    method,
+    params,
+    data: stringData,
     headers: {
-      Authorization: authorization(options),
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Content-Length": Buffer.byteLength(stringData),
+      Authorization: authorization({
+        baseURL,
+        method,
+        params,
+        data,
+        oAuthOptions,
+      }),
     },
   };
 }
