@@ -1,7 +1,7 @@
 import signatureBaseString from "./signatureBaseString";
 
 const method = "POST";
-const baseURL = "https://api.twitter.com/1.1/statuses/update.json";
+const url = "https://api.twitter.com/1.1/statuses/update.json";
 const params = {
   include_entities: "true",
 };
@@ -19,7 +19,7 @@ it("should return the parameter string", () => {
   expect(
     signatureBaseString({
       method,
-      baseURL,
+      url,
       params,
       data,
       oAuthOptions,

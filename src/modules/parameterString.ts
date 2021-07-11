@@ -1,4 +1,4 @@
-import { SignatureOAuthOptions } from "../../types";
+import { SignatureOAuthOptions } from "../types";
 import { percentEncode } from "../helpers";
 
 function buildOutputString(

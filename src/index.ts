@@ -1,49 +1,27 @@
-import qs from "querystring";
-import authorization from "./authorization/authorization";
-import { percentEncode } from "./authorization/helpers";
 import { AuthorizationOptions } from "./types";
+import { randomString, timestamp, percentEncode } from "./helpers";
+import signature from "./modules/signature";
 
-function buildBody(
-  bodyParams: Record<string, string | number | boolean>
-): string {
-  return qs.stringify(bodyParams, "&", "=", {
-    encodeURIComponent: percentEncode,
+export default function authorization(options: AuthorizationOptions): string {
+  const oAuthParams = {
+    oauth_consumer_key: options.oAuthOptions.api_key,
+    oauth_nonce: randomString(32),
+    oauth_signature: "",
+    oauth_signature_method: "HMAC-SHA1",
+    oauth_timestamp: timestamp(),
+    oauth_token: options.oAuthOptions.access_token,
+    oauth_version: "1.0",
+  };
+
+  oAuthParams.oauth_signature = signature({
+    ...options,
+    oAuthOptions: { ...options.oAuthOptions, ...oAuthParams },
   });
-}
 
-export default function oAuthRequest({
-  baseURL,
-  method,
-  params = {},
-  data = {},
-  oAuthOptions,
-}: AuthorizationOptions): {
-  method: "GET" | "PUT" | "POST" | "DELETE";
-  baseURL: string;
-  params: Record<string, string>;
-  data: string;
-  headers: {
-    Authorization: string;
-    "Content-Type": "application/x-www-form-urlencoded";
-    "Content-Length": number;
-  };
-} {
-  const stringData = buildBody(data);
-  return {
-    baseURL,
-    method,
-    params,
-    data: stringData,
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      "Content-Length": Buffer.byteLength(stringData),
-      Authorization: authorization({
-        baseURL,
-        method,
-        params,
-        data,
-        oAuthOptions,
-      }),
-    },
-  };
+  return `OAuth ${Object.entries(oAuthParams)
+    .map(
+      ([key, value]) =>
+        `${percentEncode(key)}="${percentEncode(String(value))}"`
+    )
+    .join(", ")}`;
 }

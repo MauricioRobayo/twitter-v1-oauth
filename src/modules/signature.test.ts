@@ -1,7 +1,7 @@
 import signature from "./signature";
 
 const method = "POST";
-const baseURL = "https://api.twitter.com/1.1/statuses/update.json";
+const url = "https://api.twitter.com/1.1/statuses/update.json";
 const params = { include_entities: "true" };
 const data = {
   status: "Hello Ladies + Gentlemen, a signed OAuth request!",
@@ -19,7 +19,7 @@ it("should return the signature", () => {
   expect(
     signature({
       method,
-      baseURL,
+      url,
       params,
       data,
       oAuthOptions,

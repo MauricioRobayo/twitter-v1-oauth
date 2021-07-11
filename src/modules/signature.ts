@@ -4,7 +4,7 @@ import {
   RequestOptions,
   BaseOAuthOptions,
   ExtendedOAuthOptions,
-} from "../../types";
+} from "../types";
 import signatureBaseString from "./signatureBaseString";
 
 export default function signature(

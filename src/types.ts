@@ -17,7 +17,7 @@ export type SignatureOAuthOptions = Pick<
   ExtendedOAuthOptions;
 
 export type RequestOptions = {
-  baseURL: string;
+  url: string;
   method: "GET" | "POST" | "PUT" | "DELETE";
   params?: Record<string, string>;
   data?: Record<string, string | number | boolean>;

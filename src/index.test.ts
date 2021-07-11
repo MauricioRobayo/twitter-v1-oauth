@@ -1,98 +1,37 @@
-import oAuthRequest from ".";
+import authorization from "./index";
 
+jest.mock("./modules/signature", () =>
+  jest.fn(() => "tnnArxj06cWHq44gCs1OSKk/jLY=")
+);
+jest.mock("./helpers", () => ({
+  ...jest.requireActual("./helpers"),
+  timestamp: jest.fn(() => 1318622958),
+  randomString: jest.fn(() => "kYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg"),
+}));
+
+const method = "POST";
+const url = "https://api.twitter.com/1.1/statuses/update.json";
+const params = { include_entities: "true" };
+const data = {
+  status: "Hello Ladies + Gentlemen, a signed OAuth request!",
+};
 const oAuthOptions = {
   api_key: "xvz1evFS4wEEPTGEFPHBog",
   api_secret_key: "kAcSOqF21Fu85e7zjz7ZN2U4ZRhfV3WpwPAoE3Z7kBw",
   access_token: "370773112-GmHxMAgYyLbNEtIKZeRNFsMKPR9EyMZeS9weJAEb",
   access_token_secret: "LswwdoUaIvS8ltyTt5jkRh4J50vUPVVHtR2YPi5kE",
 };
-const baseURL = "https://api.twitter.com/1.1/search/tweets.json";
-const params = { q: "twitter bot" };
-const data = { status: "Hello World!" };
-const expectedData = "status=Hello%20World%21";
 
-it("should return the correct request with params", () => {
-  const method = "GET";
-  const request = oAuthRequest({
-    oAuthOptions,
-    method,
-    baseURL,
-    params,
-  });
-
-  expect(request).toEqual({
-    baseURL,
-    method,
-    params,
-    data: "",
-    headers: {
-      "Content-Length": 0,
-      "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: expect.stringContaining("OAuth"),
-    },
-  });
-});
-
-it("should return the correct request with body", () => {
-  const method = "POST";
-  const request = oAuthRequest({
-    oAuthOptions,
-    method,
-    baseURL,
-    data,
-  });
-  expect(request).toEqual({
-    baseURL,
-    method,
-    data: expectedData,
-    params: {},
-    headers: {
-      "Content-Length": expectedData.length,
-      "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: expect.stringContaining("OAuth"),
-    },
-  });
-});
-
-it("should return the correct request without body and params", () => {
-  const method = "POST";
-  const request = oAuthRequest({
-    oAuthOptions,
-    method,
-    baseURL,
-  });
-  expect(request).toEqual({
-    baseURL,
-    method,
-    params: {},
-    data: "",
-    headers: {
-      "Content-Length": 0,
-      "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: expect.stringContaining("OAuth"),
-    },
-  });
-});
-
-it("should return the correct request with body and params", () => {
-  const method = "POST";
-  const request = oAuthRequest({
-    oAuthOptions,
-    method,
-    baseURL,
-    params,
-    data,
-  });
-
-  expect(request).toEqual({
-    baseURL,
-    method,
-    params,
-    data: expectedData,
-    headers: {
-      "Content-Length": expectedData.length,
-      "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: expect.stringContaining("OAuth"),
-    },
-  });
+it("should return the authorization header string", () => {
+  expect(
+    authorization({
+      method,
+      url,
+      params,
+      data,
+      oAuthOptions,
+    })
+  ).toBe(
+    'OAuth oauth_consumer_key="xvz1evFS4wEEPTGEFPHBog", oauth_nonce="kYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg", oauth_signature="tnnArxj06cWHq44gCs1OSKk%2FjLY%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp="1318622958", oauth_token="370773112-GmHxMAgYyLbNEtIKZeRNFsMKPR9EyMZeS9weJAEb", oauth_version="1.0"'
+  );
 });

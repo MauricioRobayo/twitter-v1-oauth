@@ -1,10 +1,10 @@
-import { RequestOptions, SignatureOAuthOptions } from "../../types";
+import { RequestOptions, SignatureOAuthOptions } from "../types";
 import { percentEncode } from "../helpers";
 import parameterString from "./parameterString";
 
 export default function signatureBaseString({
   method,
-  baseURL,
+  url,
   params,
   data,
   oAuthOptions,
@@ -12,7 +12,7 @@ export default function signatureBaseString({
   oAuthOptions: SignatureOAuthOptions;
 }): string {
   const paramString = parameterString(oAuthOptions, params, data);
-  return `${method.toUpperCase()}&${percentEncode(baseURL)}&${percentEncode(
+  return `${method.toUpperCase()}&${percentEncode(url)}&${percentEncode(
     paramString
   )}`;
 }
