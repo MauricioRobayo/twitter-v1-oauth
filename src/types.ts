@@ -1,4 +1,4 @@
-export type BaseOAuthOptions = {
+export type OAuthOptions = {
   api_key: string;
   api_secret_key: string;
   access_token: string;
@@ -11,7 +11,7 @@ export type ExtendedOAuthOptions = {
 };
 
 export type SignatureOAuthOptions = Pick<
-  BaseOAuthOptions,
+  OAuthOptions,
   "access_token" | "api_key"
 > &
   ExtendedOAuthOptions;
@@ -21,8 +21,4 @@ export type RequestOptions = {
   method: "GET" | "POST" | "PUT" | "DELETE";
   params?: Record<string, string>;
   data?: Record<string, string | number | boolean>;
-};
-
-export type AuthorizationOptions = RequestOptions & {
-  oAuthOptions: BaseOAuthOptions;
 };

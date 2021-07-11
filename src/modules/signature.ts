@@ -1,15 +1,11 @@
 import crypto from "crypto";
 import { percentEncode } from "../helpers";
-import {
-  RequestOptions,
-  BaseOAuthOptions,
-  ExtendedOAuthOptions,
-} from "../types";
+import { RequestOptions, OAuthOptions, ExtendedOAuthOptions } from "../types";
 import signatureBaseString from "./signatureBaseString";
 
 export default function signature(
   options: RequestOptions & {
-    oAuthOptions: BaseOAuthOptions & ExtendedOAuthOptions;
+    oAuthOptions: OAuthOptions & ExtendedOAuthOptions;
   }
 ): string {
   const baseString = signatureBaseString(options);
