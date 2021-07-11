@@ -1,15 +1,16 @@
 import authorization from "./index";
 
-const actualHelpers = jest.requireActual("./helpers");
-
 jest.mock("./modules/signature", () =>
   jest.fn(() => "tnnArxj06cWHq44gCs1OSKk/jLY=")
 );
-jest.mock("./helpers", () => ({
-  ...actualHelpers,
-  timestamp: jest.fn(() => 1318622958),
-  randomString: jest.fn(() => "kYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg"),
-}));
+jest.mock("./helpers", () => {
+  const actualHelpers = jest.requireActual("./helpers");
+  return {
+    ...actualHelpers,
+    timestamp: jest.fn(() => 1318622958),
+    randomString: jest.fn(() => "kYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg"),
+  };
+});
 
 const method = "POST";
 const url = "https://api.twitter.com/1.1/statuses/update.json";
