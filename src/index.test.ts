@@ -1,10 +1,12 @@
 import authorization from "./index";
 
+const actualHelpers = jest.requireActual("./helpers");
+
 jest.mock("./modules/signature", () =>
   jest.fn(() => "tnnArxj06cWHq44gCs1OSKk/jLY=")
 );
 jest.mock("./helpers", () => ({
-  ...jest.requireActual("./helpers"),
+  ...actualHelpers,
   timestamp: jest.fn(() => 1318622958),
   randomString: jest.fn(() => "kYjzVBB8Y0ZFabxSWbWovY3uYSQ2pTgmZeNu2VS4cg"),
 }));
