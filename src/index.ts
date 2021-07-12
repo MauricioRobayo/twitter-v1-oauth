@@ -3,6 +3,8 @@ import { OAuthOptions, RequestOptions } from "./types";
 import { randomString, timestamp, percentEncode } from "./helpers";
 import signature from "./modules/signature";
 
+export { Method, RequestOptions, OAuthOptions } from "./types";
+
 export function encode(
   data: Record<string, string | number | boolean>
 ): string {
