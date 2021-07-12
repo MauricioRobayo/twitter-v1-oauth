@@ -1,20 +1,13 @@
-# Twitter API v1.1 OAuth 1.0a 🔑
+# Twitter OAuth 1.0a 🔑
 
-[![npm version](https://badge.fury.io/js/twitter-v1-oauth.svg)](https://www.npmjs.com/package/twitter-v1-oauth)
-[![Build and Test](https://github.com/MauricioRobayo/twitter-v1-oauth/actions/workflows/main.yml/badge.svg)](https://github.com/MauricioRobayo/twitter-v1-oauth/actions/workflows/main.yml)
-[![codecov](https://codecov.io/gh/MauricioRobayo/twitter-v1-oauth/branch/main/graph/badge.svg?token=M2SaEIeOtO)](https://codecov.io/gh/MauricioRobayo/twitter-v1-oauth)
-[![CodeFactor](https://www.codefactor.io/repository/github/mauriciorobayo/twitter-v1-oauth/badge)](https://www.codefactor.io/repository/github/mauriciorobayo/twitter-v1-oauth)
-
-Simple and minimalist module to send OAuth 1.0a requests to the Twitter API v1.1.
-
-It returns an object with the request options necessary to make a request using your favorite tool.
+Simple and minimalist module to generate oAuth1.0a authorization header for Twitter API v1.1 and V2.
 
 ```typescript
 import dotenv from "dotenv";
-import oAuthRequest from "twitter-v1-oauth";
-import axios from "axios";
-
 dotenv.config();
+
+import axios from "axios";
+import oAuth1a from "twitter-oauth1a";
 
 const oAuthOptions = {
   api_key: process.env.TWITTER_API_KEY || "",
@@ -22,23 +15,23 @@ const oAuthOptions = {
   access_token: process.env.TWITTER_ACCESS_TOKEN || "",
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET || "",
 };
-const baseURL = "https://api.twitter.com/1.1/search/tweets.json";
+const url = "https://api.twitter.com/1.1/search/tweets.json";
 const method = "GET";
 const params = { q: "twitter bot" };
 
-const searchRequest = oAuthRequest({
-  oAuthOptions,
-  method,
-  baseURL,
-  params,
-});
+const authorization = oAuth1a({ method, url, params }, oAuthOptions);
 
 axios
-  .request(searchRequest)
+  .get(url, {
+    params,
+    headers: {
+      authorization,
+    },
+  })
   .then(({ data }) => console.log(data))
   .catch((err) => {
     if (err.response) {
-      return console.log(err.response);
+      return console.log(err.response.data.errors);
     }
     console.log(err);
   });
@@ -65,19 +58,25 @@ Create an app and get your credentials, you will need:
 
 Use your preferred library to send the request using the documented endpoints and parameters for the [twitter v1 API](https://developer.twitter.com/en/docs/basics/getting-started).
 
-#### CommonJS
+### Twitter API v1.1 vs V1
+
+When making a post request to Twitter API v1.1, the data needs to be encoded and sent as `application/x-www-form-urlencoded`. The module exports and `encode` function that can be used to properly encode the body before it is send. Check [./examples/post-tweet.ts] for an example.
+
+Whe making a post request to Twitter API V2, the data doesn't need to be encoded and must be sent as `application/json`. Check [./examples/like-v2.ts] for an example.
+
+### CommonJS
 
 ```js
 const authRequest = require("twitter-v1-oauth").default;
 ```
 
-#### ES6 Modules
+### ES6 Modules
 
 ```js
 import oAuthRequest from "twitter-v1-oauth";
 ```
 
-#### TypeScript
+### TypeScript
 
 Type definitions are included.
 
