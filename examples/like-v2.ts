@@ -12,21 +12,24 @@ const oAuthOptions = {
   access_token: process.env.TWITTER_ACCESS_TOKEN || "",
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET || "",
 };
-
-const url =
-  "https://api.twitter.com/1.1/statuses/retweet/1397568983931392004.json";
+const url = `https://api.twitter.com/2/users/${process.env.TWITTER_USER_ID}/likes`;
 const method = "POST";
+const data = {
+  tweet_id: "1397568983931392004",
+};
 
 axios
-  .post(url, undefined, {
+  .post(url, data, {
     headers: {
-      authorization: oAuth1a({ url, method }, oAuthOptions),
+      authorization: oAuth1a({ method, url }, oAuthOptions),
     },
   })
-  .then((data) => console.log(data))
+  .then((data) => {
+    return console.log(data);
+  })
   .catch((err) => {
     if (err.response) {
-      return console.log(err.response.data.errors);
+      return console.log(err.response.data);
     }
     console.log(err);
   });
