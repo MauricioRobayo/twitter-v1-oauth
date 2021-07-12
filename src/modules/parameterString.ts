@@ -12,7 +12,7 @@ function buildOutputString(
 
 export default function parameterString(
   signatureOptions: SignatureOAuthOptions,
-  queryParams?: Record<string, string>,
+  queryParams?: Record<string, string | number | boolean>,
   bodyParams?: Record<string, string | number | boolean>
 ): string {
   const params = {

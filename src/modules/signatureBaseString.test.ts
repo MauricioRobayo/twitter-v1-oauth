@@ -2,9 +2,7 @@ import signatureBaseString from "./signatureBaseString";
 
 const method = "POST";
 const url = "https://api.twitter.com/1.1/statuses/update.json";
-const params = {
-  include_entities: "true",
-};
+const params = { include_entities: true };
 const data = {
   status: "Hello Ladies + Gentlemen, a signed OAuth request!",
 };

@@ -1,7 +1,7 @@
 import parameterString from "./parameterString";
 
 const queryParams = {
-  include_entities: "true",
+  include_entities: true,
 };
 const bodyParams = {
   status: "Hello Ladies + Gentlemen, a signed OAuth request!",

@@ -1,4 +1,4 @@
-type Method = "GET" | "POST" | "PUT" | "DELETE";
+export type Method = "GET" | "POST" | "PUT" | "DELETE";
 
 export type OAuthOptions = {
   api_key: string;
@@ -21,6 +21,6 @@ export type SignatureOAuthOptions = Pick<
 export type RequestOptions = {
   url: string;
   method: Method;
-  params?: Record<string, string>;
+  params?: Record<string, string | number | boolean>;
   data?: Record<string, string | number | boolean>;
 };
