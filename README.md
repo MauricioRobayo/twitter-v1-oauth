@@ -63,11 +63,11 @@ Create an app and get your credentials, you will need:
 
 Use your preferred library to send the request using the documented endpoints and parameters for the [twitter v1 API](https://developer.twitter.com/en/docs/basics/getting-started).
 
-### Twitter API v1.1 vs V1
+### Twitter API v1.1 vs V2
 
-When making a post request to Twitter API v1.1, the data needs to be encoded and sent as `application/x-www-form-urlencoded`. The module exports and `encode` function that can be used to properly encode the body before it is send. Check [./examples/post-tweet.ts] for an example.
+When making a post request to Twitter API v1.1, the data needs to be encoded and sent as `application/x-www-form-urlencoded`. The module exports and `encode` function that can be used to properly encode the body before it is send. Check [post-tweet](./examples/post-tweet.ts) for an example.
 
-Whe making a post request to Twitter API V2, the data doesn't need to be encoded and must be sent as `application/json`. Check [./examples/like-v2.ts] for an example.
+Whe making a post request to Twitter API v2, the data doesn't need to be encoded and must be sent as `application/json`. Check [like-v2](./examples/like-v2.ts) for an example.
 
 ### CommonJS
 
