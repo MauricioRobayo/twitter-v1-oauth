@@ -1,8 +1,17 @@
+import qs from "querystring";
 import { OAuthOptions, RequestOptions } from "./types";
 import { randomString, timestamp, percentEncode } from "./helpers";
 import signature from "./modules/signature";
 
-export default function authorization(
+export function encode(
+  data: Record<string, string | number | boolean>
+): string {
+  return qs.stringify(data, "&", "=", {
+    encodeURIComponent: percentEncode,
+  });
+}
+
+export default function oAuth1a(
   requestOptions: RequestOptions,
   oAuthOptions: OAuthOptions
 ): string {

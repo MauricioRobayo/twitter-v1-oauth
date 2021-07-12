@@ -1,4 +1,4 @@
-import crypto = require("crypto");
+import crypto from "crypto";
 
 // https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent#Description
 export function percentEncode(str: string): string {
