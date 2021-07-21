@@ -12,7 +12,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import axios from "axios";
-import oAuth1a from "twitter-oauth1a";
+import oAuth1a from "twitter-v1-oauth";
 
 const oAuthOptions = {
   api_key: process.env.TWITTER_API_KEY || "",
