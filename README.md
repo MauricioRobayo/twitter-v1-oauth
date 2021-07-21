@@ -65,7 +65,7 @@ Use your preferred library to send the request using the documented endpoints an
 
 ### Twitter API v1.1 vs V2
 
-When making a post request to Twitter API v1.1, the data needs to be encoded and sent as `application/x-www-form-urlencoded`. The module exports and `encode` function that can be used to properly encode the body before it is send. Check [post-tweet](./examples/post-tweet.ts) for an example.
+When making a post request to Twitter API v1.1, the data needs to be encoded and sent as `application/x-www-form-urlencoded`. The module exports an `encode` function that can be used to properly encode the body before it is send. Check [post-tweet](./examples/post-tweet.ts) for an example.
 
 Whe making a post request to Twitter API v2, the data doesn't need to be encoded and must be sent as `application/json`. Check [like-v2](./examples/like-v2.ts) for an example.
 
