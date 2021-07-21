@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-console */
 // https://developer.twitter.com/en/apps/
 import dotenv from "dotenv";
