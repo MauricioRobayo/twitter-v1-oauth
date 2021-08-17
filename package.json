@@ -34,5 +34,17 @@
     "prettier": "^2.3.2",
     "ts-jest": "^27.0.3",
     "typescript": "^4.3.5"
-  }
+  },
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MauricioRobayo/twitter-v1-oauth.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MauricioRobayo/twitter-v1-oauth/issues"
+  },
+  "homepage": "https://github.com/MauricioRobayo/twitter-v1-oauth#readme"
 }
