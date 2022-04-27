@@ -28,7 +28,7 @@
     "@typescript-eslint/parser": "^4.28.2",
     "axios": "^0.27.2",
     "dotenv": "^16.0.0",
-    "eslint": "^7.30.0",
+    "eslint": "^8.14.0",
     "eslint-config-prettier": "^8.3.0",
     "jest": "^27.0.6",
     "prettier": "^2.3.2",
