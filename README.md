@@ -1,3 +1,5 @@
+**This package is no longer maintained**
+
 # Twitter OAuth 1.0a 🔑
 
 [![npm version](https://badge.fury.io/js/twitter-v1-oauth.svg)](https://www.npmjs.com/package/twitter-v1-oauth)
